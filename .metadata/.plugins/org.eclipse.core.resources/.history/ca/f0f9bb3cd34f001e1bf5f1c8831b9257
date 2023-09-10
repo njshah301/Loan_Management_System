@@ -1,0 +1,5 @@
+package com.luma;
+
+public class SwaggerConfig {
+
+}

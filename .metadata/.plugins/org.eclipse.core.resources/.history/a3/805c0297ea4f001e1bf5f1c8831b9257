@@ -1,0 +1,54 @@
+package com.luma.service.serviceImpl;
+
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.luma.model.Employee;
+import com.luma.model.dto.EmployeeRegisterDto;
+import com.luma.repository.EmployeeRepository;
+import com.luma.service.service.EmployeeService;
+@Service
+
+public class EmployeeServiceImpl implements EmployeeService{
+	
+	@Autowired
+	EmployeeRepository employeeRepository;
+	
+	@Autowired
+	ModelMapper modelMapper;
+	public EmployeeRegisterDto addEmployee(EmployeeRegisterDto employeeRegisterDto)
+	{
+		
+		employeeRepository.save(convertDtoToEntity(employeeRegisterDto));
+		return employeeRegisterDto;
+	}
+	
+	public Employee convertDtoToEntity(EmployeeRegisterDto employeeRegisterDto)
+	{
+		Employee employee= modelMapper.map(employeeRegisterDto, Employee.class);
+		employee.setUsername(employeeRegisterDto.getName()+"@LUMA");
+		employee.setPassword("xyz@123");
+		return employee;
+	}
+	
+	public EmployeeRegisterDto convertEntityToDto(Employee employee)
+	{
+		EmployeeRegisterDto employeeRegisterDto= modelMapper.map(employee, EmployeeRegisterDto.class);
+		return employeeRegisterDto;
+	}
+
+	@Override
+
+	public List<EmployeeRegisterDto> getEmployees() {
+		List<EmployeeRegisterDto> employeeRegisterDtos=  employeeRepository.findAll().stream().map(employee-> convertEntityToDto(employee)).collect(Collectors.toList());
+		return employeeRegisterDtos;
+	}
+}

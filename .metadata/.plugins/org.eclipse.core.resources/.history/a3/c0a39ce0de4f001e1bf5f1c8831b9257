@@ -1,0 +1,42 @@
+package com.luma.controller;
+
+import org.apache.catalina.startup.LifecycleListenerRule;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.luma.model.Employee;
+import com.luma.model.dto.EmployeeRegisteDto;
+import com.luma.service.service.EmployeeService;
+
+import jakarta.validation.Valid;
+import java.util.List;
+@RequestMapping("/api/employee")
+@RestController
+public class EmployeeController {
+	
+	@Autowired
+	private EmployeeService employeeService;
+	
+	@GetMapping
+	
+	public List<EmployeeRegisteDto> getEmployees()
+	{ 
+		List<EmployeeRegisteDto> employeeRegisterDtos=employeeService.getEmployees();
+		return employeeRegisterDtos;
+	}
+	@PostMapping
+	public ResponseEntity<EmployeeRegisteDto> addEmployee(@Valid @RequestBody EmployeeRegisteDto employeeRegisteDto)
+	{
+		EmployeeRegisteDto emp=employeeService.addEmployee(employeeRegisteDto);
+		return new ResponseEntity<EmployeeRegisteDto> (emp,HttpStatus.CREATED);
+		
+	}
+}

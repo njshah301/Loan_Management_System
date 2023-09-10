@@ -1,0 +1,7 @@
+package com.luma.service.serviceImpl;
+
+import com.luma.service.service.EmployeeService;
+
+public class EmployeeServiceImpl implements EmployeeService{
+	
+}
