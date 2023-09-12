@@ -2,6 +2,7 @@ import HomeNavigation from './components/HomeNavigation';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AdminLogin from './components/AdminLogin';
 import UserLogin from './components/UserLogin';
+import LoanInsert from './components/LoanInsert';
 
 // const router = createBrowserRouter(
 //     // {path:"/",element:<HomeNavigation/>},
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path:"/login_user",
     element:<UserLogin/>,
+  },
+  {
+    path:"/loan_insert",
+    element:<LoanInsert/>,
   }
 ]);
 
