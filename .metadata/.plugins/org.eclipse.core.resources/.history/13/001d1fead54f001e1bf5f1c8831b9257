@@ -1,0 +1,12 @@
+//package com.luma.model.dto;
+//
+//import org.springframework.boot.autoconfigure.graphql.ConditionalOnGraphQlSchema;
+////
+//import lombok.Data;
+//
+//@Data
+//
+//@Schema
+//public class EmployeeDto {
+//
+//}
