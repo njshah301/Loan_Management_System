@@ -7,4 +7,11 @@ const authenticateAdmin = async (credentials) => {
   );
 };
 
-export {authenticateAdmin };
+const loan_insert = async (data) => {
+  const response = await axios.post(
+    "http://localhost:8080/api/loan_insert",
+    data
+  );
+};
+
+export {authenticateAdmin,loan_insert};
