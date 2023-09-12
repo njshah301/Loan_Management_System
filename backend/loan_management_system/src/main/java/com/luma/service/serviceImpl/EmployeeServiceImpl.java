@@ -100,5 +100,14 @@ public class EmployeeServiceImpl implements EmployeeService{
 		}
 		return new ResponseEntity<String> (HttpStatus.FORBIDDEN) ;
 	}
+
+	@Override
+	public EmployeeRegisterDto getEmployeesbyId(Long id) {
+		// TODO Auto-generated method stub
+		
+		Employee employee = employeeRepository.findById(id).get();
+		EmployeeRegisterDto employeeRegisterDto= convertEntityToDto(employee);
+		return employeeRegisterDto;
+	}
 	
 }

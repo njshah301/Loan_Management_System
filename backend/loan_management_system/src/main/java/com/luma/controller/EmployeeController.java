@@ -42,6 +42,13 @@ public class EmployeeController {
 		List<EmployeeRegisterDto> employeeRegisterDtos=employeeService.getEmployees();
 		return employeeRegisterDtos;
 	}
+@GetMapping(path="{id}")
+	
+	public EmployeeRegisterDto getEmployeesById(@PathVariable Long id)
+	{ 
+		EmployeeRegisterDto employeeRegisterDto=employeeService.getEmployeesbyId(id);
+		return employeeRegisterDto;
+	}
 	@PostMapping
 	public ResponseEntity<String> addEmployee(@Valid @RequestBody EmployeeRegisterDto employeeRegisteDto)
 	{

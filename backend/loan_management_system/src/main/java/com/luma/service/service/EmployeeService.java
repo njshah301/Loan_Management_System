@@ -21,4 +21,6 @@ public interface EmployeeService {
 	public void deleteEmplooyee(@Valid Long id);
 
 	public ResponseEntity<String> authUser(LoginDto loginDto);
+
+	public EmployeeRegisterDto getEmployeesbyId(Long id);
 }	
