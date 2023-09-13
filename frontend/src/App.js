@@ -4,6 +4,7 @@ import AdminLogin from './components/AdminLogin';
 import UserLogin from './components/UserLogin';
 import LoanInsert from './components/LoanInsert';
 import LoanDisplay from './components/LoanDisplay';
+import LoanEdit from './components/LoanEdit';
 // const router = createBrowserRouter(
 //     // {path:"/",element:<HomeNavigation/>},
 //     // // children: [
@@ -38,15 +39,19 @@ const router = createBrowserRouter([
   {
     path:"/loan_display",
     element:<LoanDisplay/>,
+  },
+  {
+    path:"/loan_edit",
+    element:<LoanEdit/>,
   }
 ]);
 
 function App() {
   return (
     <div className="App">
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </div>
-  );
+  )
 }
 
 export default App;

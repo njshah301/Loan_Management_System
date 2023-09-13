@@ -2,8 +2,10 @@ import { Outlet, Link } from "react-router-dom";
 import { useState } from "react";
 import { loan_insert } from "./api";
 import NavBar from "./NavBar";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const LoanInsert=()=>{
+     const navigate=useNavigate();
      const [loan_id, setloanId] = useState("");
      const [loan_type, setLoanType] = useState("");
      const [duration, setLoanDuration] = useState();
@@ -26,7 +28,8 @@ const LoanInsert=()=>{
         };
         console.log(data);
         await loan_insert(data);
-      };
+        navigate('/loan_display');
+      }
     return(
         <div>
             <NavBar/>
@@ -49,7 +52,6 @@ const LoanInsert=()=>{
                 <button type="submit">Add Data</button>
             </form>
         </div>
-
     )
 }
 

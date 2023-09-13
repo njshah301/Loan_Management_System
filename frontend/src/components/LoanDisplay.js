@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { loan_data,loan_delete } from "./api";
-
+import NavBar from "./NavBar";
+import { Navigate, useNavigate } from "react-router-dom";
 const EmployeeList = () => {
   const [loans, setLoans] = useState([]);
-
+    const navigate=useNavigate();
   useEffect(() => {
     return async () => {
       const response = await loan_data();
@@ -17,8 +18,9 @@ const EmployeeList = () => {
     await loan_delete(loan_id);
   };
 
-  const handleLoanEdit=async()=>{
-    console.log("edit");
+  const handleLoanEdit=async(loan_id)=>{
+    navigate('/loan_edit',{state:{Id:loan_id}});
+
    // e.preventDefault();
   }
 
@@ -26,6 +28,7 @@ const EmployeeList = () => {
 
   return (
     <div className="container">
+      <NavBar/>
       <h3>Loans List</h3>
       <table>
         <thead>
@@ -41,7 +44,10 @@ const EmployeeList = () => {
               <td>{loan.loan_id}</td>
               <td>{loan.loan_type}</td>
               <td>{loan.duration}</td>
-              <td><button onClick={handleLoanEdit}> Edit</button><button onClick={()=>handleLoanDelete(loan.loan_id)}> Delete </button></td>
+              <td>
+                <button onClick={()=>handleLoanEdit(loan.loan_id)}> Edit</button>
+                <button onClick={()=>handleLoanDelete(loan.loan_id)}> Delete </button>
+              </td>
             </tr>
           ))}
         </tbody>
