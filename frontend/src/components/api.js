@@ -28,4 +28,18 @@ const loan_delete=async(loan_id)=>{
     );
 }
 
-export {authenticateAdmin,loan_insert,loan_data,loan_delete};
+const loan_data_by_id = async(loan_id) =>{
+    const response = await axios.get(
+        `http://localhost:8080/api/loans/${loan_id}`
+    );
+    return response.data;
+}
+
+const loan_edit = async(loan_id,loan) =>{
+    const response = await axios.put(
+        `http://localhost:8080/api/loans/${loan_id}`,
+        loan
+    );
+}
+
+export {authenticateAdmin,loan_insert,loan_data,loan_delete,loan_data_by_id,loan_edit};
