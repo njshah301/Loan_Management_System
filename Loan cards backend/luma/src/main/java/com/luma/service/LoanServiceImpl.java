@@ -45,4 +45,11 @@ public class LoanServiceImpl implements LoanService {
 		loanRepository.deleteById(loan_id);
 		return loan;
 	}
+	
+	@Override
+	public Loan getLoanById(Long loan_id) {
+		// TODO Auto-generated method stub
+		Loan loan=loanRepository.findById(loan_id).get();
+		return loan;
+	}
 }
