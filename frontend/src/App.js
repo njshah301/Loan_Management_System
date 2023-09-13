@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AdminLogin from './components/AdminLogin';
 import UserLogin from './components/UserLogin';
 import LoanInsert from './components/LoanInsert';
-
+import LoanDisplay from './components/LoanDisplay';
 // const router = createBrowserRouter(
 //     // {path:"/",element:<HomeNavigation/>},
 //     // // children: [
@@ -34,6 +34,10 @@ const router = createBrowserRouter([
   {
     path:"/loan_insert",
     element:<LoanInsert/>,
+  },
+  {
+    path:"/loan_display",
+    element:<LoanDisplay/>,
   }
 ]);
 

@@ -9,9 +9,23 @@ const authenticateAdmin = async (credentials) => {
 
 const loan_insert = async (data) => {
   const response = await axios.post(
-    "http://localhost:8080/api/loan_insert",
+    "http://localhost:8080/api/loans",
     data
   );
 };
 
-export {authenticateAdmin,loan_insert};
+const loan_data = async () => {
+    const response = await axios.get(
+      "http://localhost:8080/api/loans"
+    );
+    return response.data;
+  };
+
+const loan_delete=async(loan_id)=>{
+    console.log(loan_id);
+    const response = await axios.delete(
+        `http://localhost:8080/api/loans/${loan_id}`
+    );
+}
+
+export {authenticateAdmin,loan_insert,loan_data,loan_delete};
