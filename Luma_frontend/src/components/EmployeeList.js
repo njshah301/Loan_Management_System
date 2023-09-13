@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAll } from "./api";
+import { deleteUser, getAll } from "./api";
 import { Link, useNavigate } from "react-router-dom";
 import CustomButton from "./customButton";
 import EditEmployeeData from "./EditEmployeeData";
@@ -14,6 +14,11 @@ const EmployeeList = () => {
   //   let path=`/editemployee/${employee.id}`;
   //   navigate(path)
   // }
+
+   async function  handleDelete(id){
+    let res=await deleteUser(id);
+    console.log('user deleted successfully');
+  }
   useEffect(() => {
     return async () => {
       const response = await getAll();
@@ -24,7 +29,7 @@ const EmployeeList = () => {
       setEmployees(response);
        console.log("This is from useEffect", response);
     };
-  }, []);
+  }, [employees]);
   
   return (
     <div className="container">
@@ -37,6 +42,7 @@ const EmployeeList = () => {
             <th>Gender</th>
             <th>Date Of Birth</th>
             <th>Date Of Joining</th>
+            <th>Department</th>
             <th>Designation</th>
             <th>Action</th>
           </tr>
@@ -50,6 +56,7 @@ const EmployeeList = () => {
               <td>{employee.gender}</td>
               <td>{employee.birthdate}</td>
               <td>{employee.joiningdate}</td>
+              <td>{employee.department}</td>
               <td>{employee.designation}</td>
               <td><button
                 onClick={()=>{
@@ -59,7 +66,7 @@ const EmployeeList = () => {
                 }} >
                 Edit
               </button>
-              <br></br><button>Delete</button></td>
+              <br></br><button onClick={()=>handleDelete(employee.id)} >Delete</button></td>
                
               </tr>
             

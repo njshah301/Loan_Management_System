@@ -59,9 +59,9 @@ const AddEmployee = () => {
       <h3 className="text-primary">Add Employee</h3>
       <form className="col-4" onSubmit={handleAddEmployee}>
       <div className="form-group">
-          <label className="form-label">Emp Id</label>
+          <label className="form-label" >Emp Id</label>
           <input
-            type="empId"
+            type="text"
             className="form-control"
             onChange={onEmpIdChange}
           />
