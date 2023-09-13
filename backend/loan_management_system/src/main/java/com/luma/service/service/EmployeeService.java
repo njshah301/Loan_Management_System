@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.luma.model.Employee;
 import com.luma.model.dto.EmployeeRegisterDto;
+import com.luma.model.dto.LoginDto;
 
 import jakarta.validation.Valid;
 
@@ -18,4 +19,8 @@ public interface EmployeeService {
 	public void updateEmployee(EmployeeRegisterDto employeeRegisterDto,Long id);
 
 	public void deleteEmplooyee(@Valid Long id);
+
+	public ResponseEntity<String> authUser(LoginDto loginDto);
+
+	public EmployeeRegisterDto getEmployeesbyId(Long id);
 }	

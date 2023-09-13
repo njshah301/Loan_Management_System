@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.luma.model.Employee;
 import com.luma.model.dto.EmployeeRegisterDto;
+import com.luma.model.dto.LoginDto;
 import com.luma.repository.EmployeeRepository;
 import com.luma.service.service.EmployeeService;
 
@@ -22,6 +23,8 @@ import jakarta.validation.Valid;
 
 public class EmployeeServiceImpl implements EmployeeService{
 	
+	private static final int ResponseEntity = 0;
+
 	@Autowired
 	EmployeeRepository employeeRepository;
 	
@@ -36,7 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	public Employee convertDtoToEntity(EmployeeRegisterDto employeeRegisterDto)
 	{
 		Employee employee= modelMapper.map(employeeRegisterDto, Employee.class);
-		employee.setUsername(employeeRegisterDto.getName()+"@LUMA");
+		employee.setUsername(employeeRegisterDto.getEmpId()+"@LUMA");
 		employee.setPassword("xyz@123");
 		return employee;
 	}
@@ -86,4 +89,25 @@ public class EmployeeServiceImpl implements EmployeeService{
 		
 		employeeRepository.deleteById(id);
 	}
+
+	@Override
+	public ResponseEntity<String> authUser(LoginDto loginDto) {
+		// TODO Auto-generated method stub
+		Optional<Employee> empOptional= employeeRepository.findByUsernameAndPassword(loginDto.getUsername(),loginDto.getPassword());
+		if(empOptional.isPresent())
+		{
+			return new ResponseEntity<String> (HttpStatus.OK);
+		}
+		return new ResponseEntity<String> (HttpStatus.FORBIDDEN) ;
+	}
+
+	@Override
+	public EmployeeRegisterDto getEmployeesbyId(Long id) {
+		// TODO Auto-generated method stub
+		
+		Employee employee = employeeRepository.findById(id).get();
+		EmployeeRegisterDto employeeRegisterDto= convertEntityToDto(employee);
+		return employeeRegisterDto;
+	}
+	
 }
