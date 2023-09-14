@@ -23,7 +23,7 @@ import jakarta.validation.Valid;
 
 public class EmployeeServiceImpl implements EmployeeService{
 	
-	private static final int ResponseEntity = 0;
+
 
 	@Autowired
 	EmployeeRepository employeeRepository;
@@ -85,7 +85,6 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Override
 	public void deleteEmplooyee(@Valid Long id) {
 		
-		Employee employee = employeeRepository.findById(id).get();
 		
 		employeeRepository.deleteById(id);
 	}
