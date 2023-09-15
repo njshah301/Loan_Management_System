@@ -1,11 +1,14 @@
 import { Outlet, Link } from "react-router-dom";
 import { useState } from "react";
 import { loan_insert } from "./api";
+import NavBar from "./NavBar";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const LoanInsert=()=>{
-     const [loanId, setloanId] = useState("");
-     const [LoanType, setLoanType] = useState("");
-     const [LoanDuration, setLoanDuration] = useState("");
+     const navigate=useNavigate();
+     const [loan_id, setloanId] = useState("");
+     const [loan_type, setLoanType] = useState("");
+     const [duration, setLoanDuration] = useState();
       const onLoanIdChange = (e) => {
         setloanId(e.target.value);
       };
@@ -19,14 +22,17 @@ const LoanInsert=()=>{
       const handleLoanInsert = async (e) => {
         e.preventDefault();
         const data={
-            loanId,
-            LoanType,
-            LoanDuration
+            loan_id,
+            loan_type,
+            duration
         };
+        console.log(data);
         await loan_insert(data);
-      };
+        navigate('/loan_display');
+      }
     return(
         <div>
+            <NavBar/>
             <h1>Loan Management Application</h1>
             <h2> Loan Cards Master Data Details</h2>
             <form onSubmit={handleLoanInsert}>
@@ -46,7 +52,6 @@ const LoanInsert=()=>{
                 <button type="submit">Add Data</button>
             </form>
         </div>
-
     )
 }
 
