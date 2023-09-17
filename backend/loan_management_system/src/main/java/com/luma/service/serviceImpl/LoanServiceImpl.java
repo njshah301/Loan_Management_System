@@ -1,8 +1,10 @@
-package com.luma.service;
+package com.luma.service.serviceImpl;
 import java.util.List;
 
 import com.luma.model.Loan;
 import com.luma.repository.LoanRepository;
+import com.luma.service.service.LoanService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
