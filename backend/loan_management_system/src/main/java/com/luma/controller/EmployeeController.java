@@ -2,6 +2,8 @@ package com.luma.controller;
 
 import org.apache.catalina.startup.LifecycleListenerRule;
 import org.hibernate.annotations.Parameter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.http.HttpStatus;
@@ -31,6 +33,7 @@ import java.util.List;
 @CrossOrigin
 	
 public class EmployeeController {
+	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 	
 	@Autowired
 	private EmployeeService employeeService;
@@ -38,20 +41,23 @@ public class EmployeeController {
 	@GetMapping
 	
 	public List<EmployeeRegisterDto> getEmployees()
-	{ 
+	{
+		logger.info("EmployeeController: Entered inside getEmployees() method");
 		List<EmployeeRegisterDto> employeeRegisterDtos=employeeService.getEmployees();
 		return employeeRegisterDtos;
 	}
 @GetMapping(path="{id}")
 	
 	public EmployeeRegisterDto getEmployeesById(@PathVariable Long id)
-	{ 
+	{
+		logger.info("EmployeeController: Entered inside getEmployeesById() method");
 		EmployeeRegisterDto employeeRegisterDto=employeeService.getEmployeesbyId(id);
 		return employeeRegisterDto;
 	}
 	@PostMapping
 	public ResponseEntity<String> addEmployee(@Valid @RequestBody EmployeeRegisterDto employeeRegisteDto)
 	{
+		logger.info("EmployeeController: Entered inside addEmployee() method");
 		employeeService.addEmployee(employeeRegisteDto);
 		return new ResponseEntity<> (HttpStatus.CREATED);
 		
@@ -60,12 +66,14 @@ public class EmployeeController {
 	@PutMapping("/{id}")
 	public void updateEmployee(@Valid @PathVariable Long id,@RequestBody EmployeeRegisterDto employeeRegisterDto)
 	{
+		logger.info("EmployeeController: Entered inside updateEmployee() method");
 		employeeService.updateEmployee(employeeRegisterDto,id);
 	}
 	
 	@DeleteMapping("/{id}")
 	public void deleteEmployee(@Valid @PathVariable Long id)
 	{
+		logger.warn("EmployeeController: Entered inside deleteEmployee() method");
 		employeeService.deleteEmplooyee(id);
 	}
 	
