@@ -28,10 +28,10 @@ import jakarta.validation.Valid;
 import lombok.extern.java.Log;
 
 import java.util.List;
+
 @RequestMapping("/api/employee")
 @RestController
-@CrossOrigin
-	
+@CrossOrigin	
 public class EmployeeController {
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 	
@@ -39,28 +39,27 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 	
 	@GetMapping
-	
 	public List<EmployeeRegisterDto> getEmployees()
 	{
 		logger.info("EmployeeController: Entered inside getEmployees() method");
 		List<EmployeeRegisterDto> employeeRegisterDtos=employeeService.getEmployees();
 		return employeeRegisterDtos;
 	}
-@GetMapping(path="{id}")
 	
+	@GetMapping(path="{id}")
 	public EmployeeRegisterDto getEmployeesById(@PathVariable Long id)
 	{
 		logger.info("EmployeeController: Entered inside getEmployeesById() method");
 		EmployeeRegisterDto employeeRegisterDto=employeeService.getEmployeesbyId(id);
 		return employeeRegisterDto;
 	}
+	
 	@PostMapping
 	public ResponseEntity<String> addEmployee(@Valid @RequestBody EmployeeRegisterDto employeeRegisteDto)
 	{
 		logger.info("EmployeeController: Entered inside addEmployee() method");
 		employeeService.addEmployee(employeeRegisteDto);
 		return new ResponseEntity<> (HttpStatus.CREATED);
-		
 	}
 	
 	@PutMapping("/{id}")
@@ -75,7 +74,5 @@ public class EmployeeController {
 	{
 		logger.warn("EmployeeController: Entered inside deleteEmployee() method");
 		employeeService.deleteEmplooyee(id);
-	}
-	
-	
+	}	
 }
