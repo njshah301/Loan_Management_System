@@ -2,6 +2,7 @@ package com.luma.service.serviceImpl;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import com.luma.model.Employee;
 import com.luma.model.Employee_Issue_Details;
 import com.luma.model.dto.ApplyLoanDto;
 import com.luma.model.dto.EmployeeIssueDetailsDto;
+import com.luma.model.dto.EmployeeItemDetailsDto;
 import com.luma.model.dto.EmployeeRegisterDto;
 import com.luma.repository.EmployeeIssueDetailsRepository;
 import com.luma.repository.EmployeeRepository;
@@ -68,5 +70,19 @@ public class EmployeeIssueDetailsServiceImpl implements EmployeeIssueDetailsServ
 	 	
 	    return new ResponseEntity<>(HttpStatus.CREATED);
 		
+	}
+
+	@Override
+	public EmployeeItemDetailsDto getItemsByEmployeeId(Long empid) {
+		// TODO Auto-generated method stub
+		Employee employee = employeeRepository.findByEmpid(empid).get();
+		EmployeeRegisterDto employeeRegisterDto = convertEntityToDto2(employee);
+		
+		EmployeeItemDetailsDto employeeItemDetailsDto = new EmployeeItemDetailsDto();
+		
+		employeeItemDetailsDto.setEmployee(employeeRegisterDto);
+		employeeItemDetailsDto.setEmployeeIssueDetailsDto(employee.getEmployee_Issue_Details().stream().map(emp-> convertEntityToDto(emp)).collect(Collectors.toList())
+);
+		return employeeItemDetailsDto;
 	}
 }
