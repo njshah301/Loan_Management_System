@@ -5,6 +5,9 @@ import UserLogin from './components/UserLogin';
 import LoanInsert from './components/LoanInsert';
 import LoanDisplay from './components/LoanDisplay';
 import LoanEdit from './components/LoanEdit';
+import ItemInsert from './components/ItemInsert';
+import ItemDisplay from './components/ItemDisplay';
+import ItemEdit from './components/ItemEdit';
 // const router = createBrowserRouter(
 //     // {path:"/",element:<HomeNavigation/>},
 //     // // children: [
@@ -43,6 +46,18 @@ const router = createBrowserRouter([
   {
     path:"/loan_edit",
     element:<LoanEdit/>,
+  },
+  {
+    path:"/item_insert",
+    element:<ItemInsert/>,
+  },
+  {
+    path:"/item_display",
+    element:<ItemDisplay/>,
+  },
+  {
+    path:"/item_edit",
+    element:<ItemEdit/>,
   }
 ]);
 

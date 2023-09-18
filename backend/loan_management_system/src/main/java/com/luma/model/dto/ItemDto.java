@@ -5,7 +5,10 @@ import lombok.Data;
 
 @Data
 public class ItemDto {
-
+	
+	@Column(nullable = false)
+	private Long itemid;
+	
 	@Column(nullable = false)
 	private String description;
 
@@ -16,7 +19,7 @@ public class ItemDto {
 	private String make;
 
 	@Column(nullable = false)
-	private String catagory;
+	private String category;
 
 	@Column(nullable = false)
 	private String value;

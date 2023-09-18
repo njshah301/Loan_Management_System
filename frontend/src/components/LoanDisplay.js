@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { loan_data,loan_delete } from "./api";
 import NavBar from "./NavBar";
 import { Navigate, useNavigate } from "react-router-dom";
-const EmployeeList = () => {
+const LoanDisplay = () => {
   const [loans, setLoans] = useState([]);
     const navigate=useNavigate();
   useEffect(() => {
@@ -56,4 +56,4 @@ const EmployeeList = () => {
   );
 };
 
-export default EmployeeList;
+export default LoanDisplay;
