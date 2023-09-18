@@ -23,7 +23,6 @@ public class EmployeeIssueDetailsDto {
 	private EmployeeRegisterDto employee;
 	
 	private ItemDto item;
-	private Loan loan;
 	@Column(nullable=false)
 	private Date issueDate;
 	

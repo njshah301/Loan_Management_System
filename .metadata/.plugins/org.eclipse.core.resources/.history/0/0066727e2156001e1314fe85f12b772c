@@ -1,0 +1,12 @@
+package com.luma.model.dto;
+
+import org.hibernate.bytecode.internal.bytebuddy.PrivateAccessorException;
+
+import jakarta.validation.constraints.AssertFalse.List;
+import lombok.Data;
+@Data
+public class EmployeeItemDetailsDto {
+	private EmployeeRegisterDto employee;
+	
+	private List<Emp>
+}

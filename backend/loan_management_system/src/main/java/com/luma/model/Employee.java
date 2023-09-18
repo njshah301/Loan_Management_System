@@ -61,7 +61,7 @@ public class Employee {
 	private String password;
 	
 	
-	@OneToMany(mappedBy = "employee",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "employee",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private java.util.List<Employee_Issue_Details> employee_Issue_Details;
 	
 	
