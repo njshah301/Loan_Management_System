@@ -42,4 +42,38 @@ const loan_edit = async(loan_id,loan) =>{
     );
 }
 
-export {authenticateAdmin,loan_insert,loan_data,loan_delete,loan_data_by_id,loan_edit};
+const item_insert = async (data) => {
+  const response = await axios.post(
+    "http://localhost:8080/api/item",
+    data
+  );
+};
+
+const item_data = async () => {
+    const response = await axios.get(
+      "http://localhost:8080/api/item"
+    );
+    return response.data;
+  };
+
+const item_delete=async(item_id)=>{
+    console.log(item_id);
+    const response = await axios.delete(
+        `http://localhost:8080/api/item/${item_id}`
+    );
+}
+
+const item_data_by_id = async(item_id) =>{
+    const response = await axios.get(
+        `http://localhost:8080/api/item/${item_id}`
+    );
+    return response.data;
+}
+
+const item_edit = async(item_id,item) =>{
+    const response = await axios.put(
+        `http://localhost:8080/api/item/${item_id}`,
+        item
+    );
+}
+export {authenticateAdmin,loan_insert,loan_data,loan_delete,loan_data_by_id,loan_edit,item_insert,item_data,item_delete,item_data_by_id,item_edit};
