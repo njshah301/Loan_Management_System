@@ -17,7 +17,6 @@ import lombok.Data;
 public class Item {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long itemid;
 	
 	@Column(nullable = false)
@@ -30,7 +29,7 @@ public class Item {
 	private String make;
 
 	@Column(nullable = false)
-	private String catagory;
+	private String category;
 
 	@Column(nullable = false)
 	private Double value;
