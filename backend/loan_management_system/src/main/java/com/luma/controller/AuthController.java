@@ -1,6 +1,8 @@
 package com.luma.controller;
 
 import org.apache.catalina.realm.AuthenticatedUserRealm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,12 +19,15 @@ import com.luma.service.service.EmployeeService;
 @CrossOrigin
 
 public class AuthController {
+	private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+
 	@Autowired
 	private EmployeeService employeeService;
 	
 	@PostMapping
 	private ResponseEntity<String> authUser(@RequestBody LoginDto loginDto)
 	{
+		logger.info("AuthController: Entered inside authUser() method");
 		return employeeService.authUser(loginDto);
 	}
 	
