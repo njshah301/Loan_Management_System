@@ -37,17 +37,20 @@ const LoanInsert=()=>{
             <h2> Loan Cards Master Data Details</h2>
             <form onSubmit={handleLoanInsert}>
                 <h4> Loan Id
-                    <input type="text" className="LoanId" onChange={onLoanIdChange}></input>
+                    <input type="text" className="LoanId" onChange={onLoanIdChange} required></input>
                 </h4>
                 <h4> Loan Type
-                <select className="LoanType" onChange={onLoanTypeChange}>
+                <label>
+                <select className="LoanType" onChange={onLoanTypeChange} required>
+                    <option value="">--Select Loan type--</option>
                     <option value="furniture">Furniture</option>
                     <option value="stationary">Stationary</option>
                     <option value="crockery">Crockery</option>
                 </select>
+                </label>
                 </h4>
                 <h4> Duration
-                    <input type="number" className="LoanDuration" onChange={onDurationChange}></input>
+                    <input type="number" className="LoanDuration" onChange={onDurationChange} required></input>
                 </h4>
                 <button type="submit">Add Data</button>
             </form>

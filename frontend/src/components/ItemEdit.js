@@ -70,30 +70,39 @@ const ItemEdit = () => {
                 <input type="text" value={item_id} className="ItemId" onChange={onItemIdChange} disabled></input>
                 </h4>
                 <h4> Item Category
-                <select className="ItemCategory" onChange={onItemCategoryChange}>
+                <label>
+                <select className="ItemCategory" onChange={onItemCategoryChange} required>
+                    <option value="">--Select Item category--</option>
                     <option value="furniture">Furniture</option>
                     <option value="stationary">Stationary</option>
                     <option value="crockery">Crockery</option>
                 </select>
+                </label>
                 </h4>
                 <h4> Item Description
-                    <input type="text" className="ItemDescription" onChange={onItemDescriptionChange}></input>
+                    <input type="text" className="ItemDescription" onChange={onItemDescriptionChange} required></input>
                 </h4>
                 <h4> Item Valuation
-                    <input type="text" className="ItemValuation" onChange={onItemValuationChange}></input>
+                    <input type="text" className="ItemValuation" onChange={onItemValuationChange} required></input>
                 </h4>
                 <h4> Item Status
-                <select className="ItemStatus" onChange={onItemStatusChange}>
+                <label>
+                <select className="ItemStatus" onChange={onItemStatusChange} required>
+                    <option value="">--Select Item status--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
+                </label>
                 </h4>
                 <h4> Item Make
-                <select className="ItemMake" onChange={onItemMakeChange}>
+                <label>
+                <select className="ItemMake" onChange={onItemMakeChange} required>
+                    <option value="">--Select Item make--</option>
                     <option value="wooden">Wooden</option>
                     <option value="glass">Glass</option>
                     <option value="plastic">Plastic</option>
                 </select>
+                </label>
                 </h4>
             <button type="submit">Edit Data</button>
         </form>

@@ -52,14 +52,15 @@ const LoanEdit = () => {
                 <input type="text" value={loan_id} className="LoanId" onChange={onLoanIdChange} disabled></input>
             </h4>
             <h4> Loan Type
-            <select className="LoanType" onChange={onLoanTypeChange}>
+            <select className="LoanType" onChange={onLoanTypeChange} required>
+                <option value="">--Select Loan type--</option>
                 <option value="furniture">Furniture</option>
                 <option value="stationary">Stationary</option>
                 <option value="crockery">Crockery</option>
             </select>
             </h4>
             <h4> Duration
-                <input type="number"  value={duration} className="LoanDuration" onChange={onDurationChange}></input>
+                <input type="number"  value={duration} className="LoanDuration" onChange={onDurationChange} required></input>
             </h4>
             <button type="submit">Edit Data</button>
         </form>
