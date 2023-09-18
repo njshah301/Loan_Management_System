@@ -29,7 +29,7 @@ public class Item {
 	private String make;
 
 	@Column(nullable = false)
-	private String catagory;
+	private String category;
 
 	@Column(nullable = false)
 	private Double value;
