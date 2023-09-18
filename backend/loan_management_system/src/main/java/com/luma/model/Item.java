@@ -17,7 +17,6 @@ import lombok.Data;
 public class Item {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long itemid;
 	
 	@Column(nullable = false)

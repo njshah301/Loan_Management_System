@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class ItemDto {
-
+	private Long itemid;
 	@Column(nullable = false)
 	private String description;
 

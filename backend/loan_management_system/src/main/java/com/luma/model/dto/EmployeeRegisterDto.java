@@ -19,7 +19,7 @@ public class EmployeeRegisterDto {
 	private Long id;
 	
 	@NotNull(message="Enter Employee ID")
-	private Long empId;
+	private Long empid;
 	@NotBlank(message="Name must not be NULL")
 	private String name;
 

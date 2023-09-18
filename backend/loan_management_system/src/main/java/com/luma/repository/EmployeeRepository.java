@@ -11,4 +11,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
 	Optional <Employee> findByUsernameAndPassword(String username, String password);
 
+	Optional <Employee> findByEmpid(Long empid);
+
 }

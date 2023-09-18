@@ -39,7 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	public Employee convertDtoToEntity(EmployeeRegisterDto employeeRegisterDto)
 	{
 		Employee employee= modelMapper.map(employeeRegisterDto, Employee.class);
-		employee.setUsername(employeeRegisterDto.getEmpId()+"@LUMA");
+		employee.setUsername(employeeRegisterDto.getEmpid()+"@LUMA");
 		employee.setPassword("xyz@123");
 		return employee;
 	}
@@ -69,7 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 		emp.setBirthdate(employeeRegisterDto.getBirthdate());
 		emp.setDepartment(employeeRegisterDto.getDepartment());
 		emp.setDesignation(employeeRegisterDto.getDesignation());
-		emp.setEmpId(employeeRegisterDto.getEmpId());
+		emp.setEmpid(employeeRegisterDto.getEmpid());
 		emp.setGender(employeeRegisterDto.getGender());
 		emp.setJoiningdate(employeeRegisterDto.getJoiningdate());
 		emp.setName(employeeRegisterDto.getName());
