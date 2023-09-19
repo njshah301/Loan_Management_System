@@ -13,6 +13,7 @@ const LoanEdit = () => {
     return async () => {
       const response= await loan_data_by_id(loan_id);
       setLoan_type(response.loan_type);
+      console.log(loan_type);
       setDuration(response.duration);
     };
   }, []);
@@ -52,7 +53,7 @@ const LoanEdit = () => {
                 <input type="text" value={loan_id} className="LoanId" onChange={onLoanIdChange} disabled></input>
             </h4>
             <h4> Loan Type
-            <select className="LoanType" onChange={onLoanTypeChange} required>
+            <select name="LoanType" className="LoanType" value={loan_type} defaultValue={loan_type} onChange={onLoanTypeChange} required>
                 <option value="">--Select Loan type--</option>
                 <option value="furniture">Furniture</option>
                 <option value="stationary">Stationary</option>

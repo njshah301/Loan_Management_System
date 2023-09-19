@@ -15,11 +15,11 @@ const ItemEdit = () => {
   useEffect(() => {
     return async () => {
       const response= await item_data_by_id(item_id);
-      setItem_category(response.item_category);
-      setItem_description(response.item_description);
-      setItem_valuation(response.item_valuation);
-      setIssue_status(response.issue_status);
-      setItem_make(response.item_make);
+      setItem_category(response.category);
+      setItem_description(response.description);
+      setItem_valuation(response.value);
+      setIssue_status(response.status);
+      setItem_make(response.make);
     };
   }, []);
   const onItemIdChange = (e) => {
@@ -70,39 +70,33 @@ const ItemEdit = () => {
                 <input type="text" value={item_id} className="ItemId" onChange={onItemIdChange} disabled></input>
                 </h4>
                 <h4> Item Category
-                <label>
-                <select className="ItemCategory" onChange={onItemCategoryChange} required>
+                <select name="ItemCategory" className="ItemCategory"  value={item_category} defaultValue={item_category} onChange={onItemCategoryChange}  required>
                     <option value="">--Select Item category--</option>
                     <option value="furniture">Furniture</option>
                     <option value="stationary">Stationary</option>
                     <option value="crockery">Crockery</option>
                 </select>
-                </label>
                 </h4>
                 <h4> Item Description
-                    <input type="text" className="ItemDescription" onChange={onItemDescriptionChange} required></input>
+                    <input type="text" value={item_description} className="ItemDescription"  onChange={onItemDescriptionChange} required></input>
                 </h4>
                 <h4> Item Valuation
-                    <input type="text" className="ItemValuation" onChange={onItemValuationChange} required></input>
+                    <input type="text" value={item_valuation} className="ItemValuation"  onChange={onItemValuationChange}  required></input>
                 </h4>
                 <h4> Item Status
-                <label>
-                <select className="ItemStatus" onChange={onItemStatusChange} required>
+                <select name="ItemStatus" className="ItemStatus" value={issue_status}  defaultValue={issue_status} onChange={onItemStatusChange} required>
                     <option value="">--Select Item status--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
-                </label>
                 </h4>
                 <h4> Item Make
-                <label>
-                <select className="ItemMake" onChange={onItemMakeChange} required>
+                <select name="ItemMake" className="ItemMake" value={item_make}  defaultValue={item_make} onChange={onItemMakeChange} required>
                     <option value="">--Select Item make--</option>
                     <option value="wooden">Wooden</option>
                     <option value="glass">Glass</option>
                     <option value="plastic">Plastic</option>
                 </select>
-                </label>
                 </h4>
             <button type="submit">Edit Data</button>
         </form>
