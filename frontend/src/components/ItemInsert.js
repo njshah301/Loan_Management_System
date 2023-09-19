@@ -47,7 +47,7 @@ const ItemInsert=()=>{
       }
     return(
         <div>
-            <NavBar/>
+            <NavBar compo={"item"}/>
             <h1>Loan Management Application</h1>
             <h2> Item Master Data Details</h2>
             <form onSubmit={handleItemInsert}>

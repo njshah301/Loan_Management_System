@@ -28,7 +28,7 @@ const ItemDisplay = () => {
 
   return (
     <div className="container">
-      <NavBar/>
+      <NavBar compo={"item"}/>
       <h3>Items List</h3>
       <table>
         <thead>

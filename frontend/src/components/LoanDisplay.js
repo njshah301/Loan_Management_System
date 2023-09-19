@@ -28,7 +28,7 @@ const LoanDisplay = () => {
 
   return (
     <div className="container">
-      <NavBar/>
+      <NavBar compo={"loan"}/>
       <h3>Loans List</h3>
       <table>
         <thead>

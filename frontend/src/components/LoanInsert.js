@@ -32,7 +32,7 @@ const LoanInsert=()=>{
       }
     return(
         <div>
-            <NavBar/>
+            <NavBar compo={"loan"}/>
             <h1>Loan Management Application</h1>
             <h2> Loan Cards Master Data Details</h2>
             <form onSubmit={handleLoanInsert}>
