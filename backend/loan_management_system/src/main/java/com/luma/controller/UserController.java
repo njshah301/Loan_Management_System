@@ -31,12 +31,16 @@ public class UserController {
 	
 	@Autowired
 	private EmployeeCardDetailsService employeeCardDetailsService;
+	
+	
+	
 	@GetMapping("/{empid}")
 	public EmployeeItemDetailsDto getItemsByEmployeeId(@PathVariable Long empid)
 	{
 		return employeeIssueDetailsService.getItemsByEmployeeId(empid);
 		
 	}
+
 	@PostMapping
 	public ResponseEntity<String> applyLoan(@Valid @RequestBody ApplyLoanDto applyLoanDto)
 	{

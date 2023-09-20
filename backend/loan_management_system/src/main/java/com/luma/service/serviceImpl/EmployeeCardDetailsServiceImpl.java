@@ -34,6 +34,12 @@ public class EmployeeCardDetailsServiceImpl implements EmployeeCardDetailsServic
 	 @Autowired private EmployeeCardDetailsRepository employeeCardDetailsRepository;
 		
 	@Autowired private EmployeeRepository employeeRepository;
+	
+	
+	
+	
+	
+	@Autowired
 	ModelMapper modelMapper;
 
 	
