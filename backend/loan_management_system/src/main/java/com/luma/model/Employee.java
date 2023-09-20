@@ -2,6 +2,7 @@ package com.luma.model;
 
 import java.awt.print.Printable;
 import java.sql.Date;
+import java.util.Set;
 
 import org.springframework.boot.autoconfigure.liquibase.DataSourceClosingSpringLiquibase;
 import org.springframework.dao.DataAccessResourceFailureException;
@@ -15,6 +16,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -59,7 +61,8 @@ public class Employee {
 
 	@Column(nullable = false)
 	private String password;
-	
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	private Set<Role> roles;
 	
 	@OneToMany(mappedBy = "employee",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private java.util.List<Employee_Issue_Details> employee_Issue_Details;

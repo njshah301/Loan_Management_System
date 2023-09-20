@@ -1,0 +1,9 @@
+package com.luma.servic;
+
+import org.reni.dtos.LoginDto;
+
+
+public interface AuthService {
+
+	String login(LoginDto loginDto);
+}

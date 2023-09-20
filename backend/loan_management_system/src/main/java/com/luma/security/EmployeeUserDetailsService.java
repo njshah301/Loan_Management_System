@@ -1,0 +1,48 @@
+package com.luma.security;
+
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import com.luma.model.Role;
+import com.luma.model.*;
+import com.luma.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmployeeUserDetailsService implements UserDetailsService {
+	@Autowired
+	private EmployeeRepository employeeRepository;
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		
+		Optional<Employee> employee=employeeRepository.findByUsername(username);
+		Employee emp = employee.get();
+		// check
+		
+		if(!employee.isPresent())
+		{
+			throw new UsernameNotFoundException("User not found with username or email "+username);
+		}
+				
+		
+		Set<GrantedAuthority> authorities=
+				emp.getRoles().stream().
+				map(role->new SimpleGrantedAuthority(role.getName()))
+				.collect(Collectors.toSet());
+		
+		
+				
+		
+		return new org.springframework.security.core.userdetails.User(emp.getUsername(), 
+				emp.getPassword(), authorities);
+	}
+
+}
