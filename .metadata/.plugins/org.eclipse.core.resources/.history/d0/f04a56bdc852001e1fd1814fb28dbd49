@@ -1,0 +1,13 @@
+package com.luma.service.service;
+
+import java.util.List;
+
+import com.luma.model.dto.ItemDto;
+
+public interface ItemService {
+
+	public List<ItemDto> getItems();
+
+	public ItemDto getItemsbyId(Long itemid) ;
+
+}
