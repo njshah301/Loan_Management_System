@@ -2,6 +2,7 @@ package com.luma.model;
 
 import java.awt.print.Printable;
 import java.sql.Date;
+import java.util.Optional;
 
 import org.springframework.boot.autoconfigure.liquibase.DataSourceClosingSpringLiquibase;
 import org.springframework.dao.DataAccessResourceFailureException;
@@ -63,6 +64,10 @@ public class Employee {
 	
 	@OneToMany(mappedBy = "employee",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private java.util.List<Employee_Issue_Details> employee_Issue_Details;
+
+	@OneToMany(mappedBy = "employee",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	private java.util.List<Employee_Card_Details> employee_Card_Details;
+
 	
 	
 	
