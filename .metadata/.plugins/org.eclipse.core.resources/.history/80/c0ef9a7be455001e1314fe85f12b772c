@@ -1,0 +1,5 @@
+package com.luma.service.serviceImpl;
+
+public class EmployeeIssueDetailsServiceImpl {
+
+}

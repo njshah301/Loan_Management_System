@@ -1,0 +1,15 @@
+package com.luma.service.service;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.luma.model.Employee;
+import com.luma.model.dto.EmployeeRegisteDto;
+
+public interface EmployeeService {
+	public EmployeeRegisteDto addEmployee(EmployeeRegisteDto employeeRegisteDto);
+
+	public List<EmployeeRegisteDto> getEmployees();
+}

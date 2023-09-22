@@ -1,0 +1,17 @@
+package com.luma.model.dto;
+
+import com.luma.model.Loan;
+
+import lombok.Data;
+@Data
+public class ApplyLoanDto {
+	private EmployeeDto employee;
+	private ItemDto item;
+	private Loan loan;
+	
+}
+
+
+
+
+
