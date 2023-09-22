@@ -108,11 +108,21 @@ public class EmployeeCardDetailsServiceImpl implements EmployeeCardDetailsServic
 		employeeCardDetailsDto.setEmployee(convertEntityToDto2(employee));
 		employeeCardDetailsDto.setIssueDate(new Date());
 		employeeCardDetailsDto.setLoan(convertEntityToDto3(applyLoanDto.getLoan()));
+		employeeCardDetailsDto.setStatus("Pending");
 //		employeeCardDetailsDto.setItem(applyLoanDto.getItem());
 //		employeeCardDetailsDto.setReturn_date(LocalDate.now().plusYears(applyLoanDto.getLoan().getDuration()));
 		
 		 
 		employeeCardDetailsRepository.save(convertDtoToEntity2(employeeCardDetailsDto));
+		
+	}
+
+	@Override
+	public void setLoanStatus(Long loan_id, String status) {
+		// TODO Auto-generated method stub
+		Employee_Card_Details employee_Card_Details=employeeCardDetailsRepository.findByLoanLoan_id(loan_id);
+		employee_Card_Details.setStatus(status);
+		employeeCardDetailsRepository.save(employee_Card_Details);
 		
 	}
 

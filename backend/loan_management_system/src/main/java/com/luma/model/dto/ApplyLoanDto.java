@@ -8,7 +8,6 @@ public class ApplyLoanDto {
 	private EmployeeRegisterDto employee;
 	private ItemDto item;
 	private Loan loan;
-	
 }
 
 

@@ -34,4 +34,6 @@ public class Employee_Card_Details {
 	
 	@Column(nullable=false)
 	private Date issueDate;
+	
+	private String status;
 }

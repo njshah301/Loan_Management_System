@@ -12,4 +12,6 @@ public interface EmployeeCardDetailsService {
 	EmployeeLoanDetailsDto getLoansByEmployeeId(Long empid);
 
 	void applyLoan(@Valid ApplyLoanDto applyLoanDto);
+
+	void setLoanStatus(Long loan_id, String status);
 }

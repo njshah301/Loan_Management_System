@@ -49,6 +49,7 @@ public class UserController {
 		return new ResponseEntity<> (HttpStatus.CREATED);
 		
 	}
+	
 
 	@GetMapping("/cards/{empid}")
 	public EmployeeLoanDetailsDto getLoansByEmployeeId(@PathVariable Long empid){

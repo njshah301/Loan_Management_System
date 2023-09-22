@@ -14,6 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
+
+@Data
 public class EmployeeCardDetailsDto {
 	private Long card_id;
 	
@@ -23,6 +25,8 @@ public class EmployeeCardDetailsDto {
 	private LoanDto loan;
 	@Column(nullable=false)
 	private Date issueDate;
+	
+	private String status;
 	public Date getIssueDate() {
 		return issueDate;
 	}
