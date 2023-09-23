@@ -35,8 +35,8 @@ public class SecurityConfig {
 		.cors(Customizer.withDefaults())
 		.authorizeHttpRequests(auth->auth.requestMatchers(HttpMethod.GET,"/api/**")
 				.permitAll().requestMatchers("/api/auth/**").permitAll()
-	//			.requestMatchers(HttpMethod.DELETE,"/api/**").permitAll()
-//				.requestMatchers(HttpMethod.PUT,"/api/**").permitAll()
+				.requestMatchers(HttpMethod.DELETE,"/api/**").permitAll()
+				.requestMatchers(HttpMethod.PUT,"/api/**").permitAll()
 				.anyRequest().authenticated())
 		.exceptionHandling(ex->ex.authenticationEntryPoint(authenticationEntryPoint))
 		.sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

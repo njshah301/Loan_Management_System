@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.luma.model.dto.JwtAuthResponse;
 import com.luma.model.dto.LoginDto;
+import com.luma.service.service.AuthService;
 import com.luma.service.service.EmployeeCardDetailsService;
 import com.luma.service.service.EmployeeService;
 
@@ -24,9 +26,9 @@ import com.luma.service.service.EmployeeService;
 public class AuthController {
 	private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-	@Autowired
-	private EmployeeService employeeService;
-	
+//	@Autowired
+//	private EmployeeService employeeService;
+//	
 	@Autowired
 	private EmployeeCardDetailsService employeeCardDetailsService;
 	@PostMapping
@@ -41,5 +43,16 @@ public class AuthController {
 		employeeCardDetailsService.setLoanStatus(card_id,status);
 	}
 	
+	@Autowired
+	private AuthService authService;
 	
+	@PostMapping("/login")
+	public ResponseEntity<JwtAuthResponse> login(@RequestBody LoginDto loginDto) {
+		System.out.println("Inside Login controller");
+		String token=authService.login(loginDto);
+		JwtAuthResponse response=new JwtAuthResponse();
+		response.setAccessToken(token);
+		return ResponseEntity.ok(response);
+	}
+
 }
