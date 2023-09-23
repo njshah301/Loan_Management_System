@@ -1,7 +1,9 @@
-package org.reni.service;
+package com.luma.service.serviceImpl;
 
-import org.reni.dtos.LoginDto;
-import org.reni.security.JwtTokenProvider;
+import com.luma.model.dto.LoginDto;
+import com.luma.security.JwtTokenProvider;
+import com.luma.service.service.AuthService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,7 +18,6 @@ public class AuthServiceImpl implements AuthService {
 	@Autowired
 	private JwtTokenProvider jwtTokenProvider;
 	
-	@Override
 	public String login(LoginDto loginDto) {
 		
 		UsernamePasswordAuthenticationToken authToken=

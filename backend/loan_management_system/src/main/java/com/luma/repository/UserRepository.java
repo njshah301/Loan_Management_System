@@ -1,8 +1,8 @@
-package org.reni.repositories;
+package com.luma.repository;
 
 import java.util.Optional;
 
-import org.reni.entities.User;
+import com.luma.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Integer> {

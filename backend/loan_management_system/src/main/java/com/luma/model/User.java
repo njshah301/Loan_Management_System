@@ -1,4 +1,4 @@
-package org.reni.entities;
+package com.luma.model;
 
 import java.util.Set;
 

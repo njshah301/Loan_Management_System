@@ -1,4 +1,4 @@
-package org.reni.dtos;
+package com.luma.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

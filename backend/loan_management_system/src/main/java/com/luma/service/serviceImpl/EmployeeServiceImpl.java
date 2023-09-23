@@ -90,7 +90,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Override
 	public ResponseEntity<String> authUser(LoginDto loginDto) {
 		logger.info("EmployeeServiceImpl: Entered inside authUser() method");
-		Optional<Employee> empOptional= employeeRepository.findByUsernameAndPassword(loginDto.getUsername(),loginDto.getPassword());
+		Optional<Employee> empOptional= employeeRepository.findByUsernameAndPassword(loginDto.getUsernameOrEmail(),loginDto.getPassword());
 		if(empOptional.isPresent())
 		{
 			return new ResponseEntity<String> (HttpStatus.OK);
