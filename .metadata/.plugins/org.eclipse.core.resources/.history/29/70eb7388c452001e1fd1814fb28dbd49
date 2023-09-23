@@ -1,5 +1,0 @@
-package com.luma.service.service;
-
-public interface ItemService {
-
-}

@@ -1,9 +1,0 @@
-package com.luma.service.serviceImpl;
-
-import java.awt.ItemSelectable;
-
-import com.luma.service.service.ItemService;
-
-public class ItemServiceImpl implements ItemService{
-
-}
