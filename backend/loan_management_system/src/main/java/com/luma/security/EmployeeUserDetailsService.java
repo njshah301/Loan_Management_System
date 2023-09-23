@@ -1,11 +1,11 @@
-package org.reni.security;
+package com.luma.security;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.reni.entities.Role;
-import org.reni.entities.User;
-import org.reni.repositories.UserRepository;
+import com.luma.model.Role;
+import com.luma.model.User;
+import com.luma.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

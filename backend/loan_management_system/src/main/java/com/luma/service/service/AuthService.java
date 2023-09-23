@@ -1,6 +1,6 @@
-package org.reni.service;
+package com.luma.service.service;
 
-import org.reni.dtos.LoginDto;
+import com.luma.model.dto.LoginDto;
 
 
 public interface AuthService {

@@ -1,4 +1,4 @@
-package org.reni.exception;
+package com.luma.exception;
 
 import java.util.List;
 

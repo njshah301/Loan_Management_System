@@ -1,4 +1,4 @@
-package org.reni.exception;
+package com.luma.exception;
 
 public class EmployeeNotFoundException extends RuntimeException {
 
