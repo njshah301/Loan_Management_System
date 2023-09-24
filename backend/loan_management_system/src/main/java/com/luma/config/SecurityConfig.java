@@ -38,8 +38,8 @@ public class SecurityConfig {
 				.requestMatchers(HttpMethod.DELETE,"/api/**").permitAll()
 				.requestMatchers(HttpMethod.PUT,"/api/**").permitAll()
 				.anyRequest().authenticated())
-		.exceptionHandling(ex->ex.authenticationEntryPoint(authenticationEntryPoint))
-		.sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+		.exceptionHandling(ex->ex.authenticationEntryPoint(authenticationEntryPoint));
+		//.sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 		
 		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 		
