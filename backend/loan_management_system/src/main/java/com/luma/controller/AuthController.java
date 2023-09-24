@@ -1,10 +1,11 @@
 package com.luma.controller;
 
-import org.apache.catalina.realm.AuthenticatedUserRealm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,6 @@ import com.luma.model.dto.JwtAuthResponse;
 import com.luma.model.dto.LoginDto;
 import com.luma.service.service.AuthService;
 import com.luma.service.service.EmployeeCardDetailsService;
-import com.luma.service.service.EmployeeService;
 
 @RequestMapping("/api/auth")
 @RestController
@@ -25,7 +25,8 @@ import com.luma.service.service.EmployeeService;
 
 public class AuthController {
 	private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
-
+@Autowired
+UserDetailsService userService;
 //	@Autowired
 //	private EmployeeService employeeService;
 //	
@@ -47,11 +48,25 @@ public class AuthController {
 	private AuthService authService;
 	
 	@PostMapping("/login")
+//	public ResponseEntity<JwtAuthResponse> login(@RequestBody LoginDto loginDto) {
+//		System.out.println("Inside Login controller");
+//		String token=authService.login(loginDto);
+//		JwtAuthResponse response=new JwtAuthResponse();
+//		response.setAccessToken(token);
+//		return ResponseEntity.ok(response);
+//	}
 	public ResponseEntity<JwtAuthResponse> login(@RequestBody LoginDto loginDto) {
-		System.out.println("Inside Login controller");
-		String token=authService.login(loginDto);
-		JwtAuthResponse response=new JwtAuthResponse();
+		System.out.println(loginDto);
+		
+		String token = authService.login(loginDto);
+		
+		JwtAuthResponse response = new JwtAuthResponse();
 		response.setAccessToken(token);
+		
+		UserDetails userDetails = userService.loadUserByUsername(loginDto.getUsernameOrEmail());
+		
+		response.setRole(userDetails.getAuthorities().toArray()[0].toString());
+		
 		return ResponseEntity.ok(response);
 	}
 
