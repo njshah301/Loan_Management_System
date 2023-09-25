@@ -8,7 +8,7 @@ import com.luma.model.Employee_Issue_Details;
 @Repository
 public interface EmployeeCardDetailsRepository  extends JpaRepository<Employee_Card_Details, Long> {
 
-	@Query("SELECT u FROM Employee_Card_Details u WHERE u.loan.loan_id = ?1")
-	Employee_Card_Details findByLoanLoan_id(Long loan_id);
+	@Query("SELECT u FROM Employee_Card_Details u WHERE u.card_id = ?1")
+	Employee_Card_Details findByLoanCard_id(Long card_id);
 
 }

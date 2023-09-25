@@ -1,5 +1,6 @@
 package com.luma.service.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -118,12 +119,36 @@ public class EmployeeCardDetailsServiceImpl implements EmployeeCardDetailsServic
 	}
 
 	@Override
-	public void setLoanStatus(Long loan_id, String status) {
+	public void setLoanStatus(Long card_id, String status) {
 		// TODO Auto-generated method stub
-		Employee_Card_Details employee_Card_Details=employeeCardDetailsRepository.findByLoanLoan_id(loan_id);
+		Employee_Card_Details employee_Card_Details=employeeCardDetailsRepository.findByLoanCard_id(card_id);
 		employee_Card_Details.setStatus(status);
 		employeeCardDetailsRepository.save(employee_Card_Details);
 		
 	}
+	@Override
+	public List<EmployeeLoanDetailsDto> getAllEmployeesLoanDetails() {
+	    List<Employee> employees = employeeRepository.findAll(); // Retrieve all employees from the repository
+	    List<EmployeeLoanDetailsDto> allEmployeesLoanDetails = new ArrayList<>();
+
+	    for (Employee employee : employees) {
+	        EmployeeRegisterDto employeeRegisterDto = convertEntityToDto2(employee);
+
+	        EmployeeLoanDetailsDto employeeLoanDetailsDto = new EmployeeLoanDetailsDto();
+	        employeeLoanDetailsDto.setEmployee(employeeRegisterDto);
+
+	        // Retrieve and set employee card details
+	        List<EmployeeCardDetailsDto> employeeCardDetails = employee.getEmployee_Card_Details()
+	                .stream()
+	                .map(emp -> convertEntityToDto(emp))
+	                .collect(Collectors.toList());
+	        employeeLoanDetailsDto.setEmployeeCardDetailsDto(employeeCardDetails);
+
+	        allEmployeesLoanDetails.add(employeeLoanDetailsDto);
+	    }
+
+	    return allEmployeesLoanDetails;
+	}
+
 
 }

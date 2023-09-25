@@ -1,7 +1,9 @@
 package com.luma.service.serviceImpl;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -15,8 +17,10 @@ import org.springframework.stereotype.Service;
 import com.luma.model.Employee;
 import com.luma.model.Employee_Issue_Details;
 import com.luma.model.dto.ApplyLoanDto;
+import com.luma.model.dto.EmployeeCardDetailsDto;
 import com.luma.model.dto.EmployeeIssueDetailsDto;
 import com.luma.model.dto.EmployeeItemDetailsDto;
+import com.luma.model.dto.EmployeeLoanDetailsDto;
 import com.luma.model.dto.EmployeeRegisterDto;
 import com.luma.repository.EmployeeIssueDetailsRepository;
 import com.luma.repository.EmployeeRepository;
@@ -95,5 +99,29 @@ public class EmployeeIssueDetailsServiceImpl implements EmployeeIssueDetailsServ
 		employeeItemDetailsDto.setEmployeeIssueDetailsDto(employee.getEmployee_Issue_Details().stream().map(emp-> convertEntityToDto(emp)).collect(Collectors.toList())
 );
 		return employeeItemDetailsDto;
+	}
+	
+	@Override
+	public List<EmployeeItemDetailsDto> getAllEmployeesItemDetails() {
+	    List<Employee> employees = employeeRepository.findAll(); // Retrieve all employees from the repository
+	    List<EmployeeItemDetailsDto> allEmployeesItemDetails = new ArrayList<>();
+
+	    for (Employee employee : employees) {
+	        EmployeeRegisterDto employeeRegisterDto = convertEntityToDto2(employee);
+
+	        EmployeeItemDetailsDto employeeItemDetailsDto = new EmployeeItemDetailsDto();
+	        employeeItemDetailsDto.setEmployee(employeeRegisterDto);
+
+	        // Retrieve and set employee card details
+	        List<EmployeeIssueDetailsDto> employeeIssueDetails = employee.getEmployee_Issue_Details()
+	                .stream()
+	                .map(emp -> convertEntityToDto(emp))
+	                .collect(Collectors.toList());
+	        employeeItemDetailsDto.setEmployeeIssueDetailsDto(employeeIssueDetails);
+
+	        allEmployeesItemDetails.add(employeeItemDetailsDto);
+	    }
+
+	    return allEmployeesItemDetails;
 	}
 }
