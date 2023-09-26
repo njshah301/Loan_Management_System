@@ -37,7 +37,7 @@ public class SecurityConfig {
 		http.csrf(config->config.disable())
 		.cors(Customizer.withDefaults())
 		.authorizeHttpRequests(auth->auth.requestMatchers(HttpMethod.GET,"/api/**")
-				.permitAll().requestMatchers("/api/auth/**").permitAll().requestMatchers("/api/employees").permitAll()
+				.permitAll().requestMatchers("/api/auth/**").permitAll().requestMatchers("/api/employee").permitAll()
 				.requestMatchers(HttpMethod.POST,"/api/**").permitAll()
 				.requestMatchers(HttpMethod.DELETE,"/api/**").permitAll()
 				.requestMatchers(HttpMethod.PUT,"/api/**").permitAll()
