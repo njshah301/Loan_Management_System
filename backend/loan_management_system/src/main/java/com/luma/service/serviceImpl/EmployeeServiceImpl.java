@@ -128,6 +128,8 @@ import org.springframework.stereotype.Service;
 import com.luma.model.Employee;
 import com.luma.model.Role;
 import com.luma.model.User;
+import com.luma.model.dto.ChangeCredentialDto;
+import com.luma.model.dto.EmployeeDto;
 import com.luma.model.dto.EmployeeRegisterDto;
 import com.luma.model.dto.LoginDto;
 import com.luma.repository.EmployeeRepository;
@@ -174,6 +176,13 @@ public class EmployeeServiceImpl implements EmployeeService{
 		Employee employee= modelMapper.map(employeeRegisterDto, Employee.class);
 		employee.setUsername(employeeRegisterDto.getEmpid()+"@BRENS");
 		employee.setPassword(employeeRegisterDto.getEmpid()+"@123");
+		return employee;
+	}
+	
+	public Employee convertDtoToEntity2(EmployeeDto employeeDto)
+	{
+		logger.info("EmployeeServiceImpl: Entered inside convertDtoToEntity2() method");
+		Employee employee= modelMapper.map(employeeDto, Employee.class);
 		return employee;
 	}
 	
@@ -232,7 +241,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Override
 	public void deleteEmplooyee(@Valid Long id) {
 		logger.warn("EmployeeServiceImpl: Entered inside deleteEmployee() method");
-		userRepository.deleteById(id);
+		userRepository.deleteById(employeeRepository.findById(id).get().getEmpid());
 		employeeRepository.deleteById(id);
 	}
 
@@ -253,5 +262,19 @@ public class EmployeeServiceImpl implements EmployeeService{
 		Employee employee = employeeRepository.findById(id).get();
 		EmployeeRegisterDto employeeRegisterDto= convertEntityToDto(employee);
 		return employeeRegisterDto;
+	}
+
+	@Override
+	public void updateEmployeePassword(ChangeCredentialDto changeCredentialDto, Long id) {
+		// TODO Auto-generated method stub
+		Employee employee= employeeRepository.findById(id).get();
+		
+		PasswordEncoder encoder = new BCryptPasswordEncoder();
+
+		employee.setPassword(changeCredentialDto.getPassword());
+		Optional<User> user = userRepository.findById(employee.getEmpid());
+		user.get().setPassword(encoder.encode(changeCredentialDto.getPassword()));
+		userRepository.save(user.get());
+		
 	}
 }

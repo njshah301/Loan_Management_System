@@ -1,15 +1,12 @@
 package com.luma.controller;
 
-import org.apache.catalina.startup.LifecycleListenerRule;
-import org.hibernate.annotations.Parameter;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,16 +16,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.service.annotation.DeleteExchange;
 
-import com.luma.model.Employee;
+import com.luma.model.dto.ChangeCredentialDto;
 import com.luma.model.dto.EmployeeRegisterDto;
 import com.luma.service.service.EmployeeService;
 
 import jakarta.validation.Valid;
-import lombok.extern.java.Log;
-
-import java.util.List;
 
 @RequestMapping("/api/employee")
 @RestController
@@ -54,6 +47,7 @@ public class EmployeeController {
 		EmployeeRegisterDto employeeRegisterDto=employeeService.getEmployeesbyId(id);
 		return employeeRegisterDto;
 	}
+	
 	//@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping
 	public ResponseEntity<String> addEmployee(@Valid @RequestBody EmployeeRegisterDto employeeRegisteDto)
@@ -68,6 +62,12 @@ public class EmployeeController {
 	{
 		logger.info("EmployeeController: Entered inside updateEmployee() method");
 		employeeService.updateEmployee(employeeRegisterDto,id);
+	}
+	@PutMapping("/resetPassword/{id}")
+	public void updateEmployeePassword(@Valid @PathVariable Long id,@RequestBody ChangeCredentialDto changeCredentialDto)
+	{
+		logger.info("EmployeeController: Entered inside updateEmployeePassword() method");
+		employeeService.updateEmployeePassword(changeCredentialDto,id);
 	}
 	
 	@DeleteMapping("/{id}")

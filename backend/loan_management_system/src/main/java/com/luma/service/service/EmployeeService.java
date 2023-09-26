@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.luma.model.Employee;
+import com.luma.model.dto.ChangeCredentialDto;
 import com.luma.model.dto.EmployeeRegisterDto;
 import com.luma.model.dto.LoginDto;
 
@@ -23,4 +24,6 @@ public interface EmployeeService {
 	public ResponseEntity<String> authUser(LoginDto loginDto);
 
 	public EmployeeRegisterDto getEmployeesbyId(Long id);
+
+	public void updateEmployeePassword(ChangeCredentialDto changeCredentialDto, Long id);
 }	
