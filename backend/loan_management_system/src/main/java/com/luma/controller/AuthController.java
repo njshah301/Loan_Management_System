@@ -32,12 +32,12 @@ UserDetailsService userService;
 //	
 	@Autowired
 	private EmployeeCardDetailsService employeeCardDetailsService;
-	@PostMapping
-	private ResponseEntity<String> authUser(@RequestBody LoginDto loginDto)
-	{
-		logger.info("AuthController: Entered inside authUser() method");
-		return employeeService.authUser(loginDto);
-	}
+//	@PostMapping
+//	private ResponseEntity<String> authUser(@RequestBody LoginDto loginDto)
+//	{
+//		logger.info("AuthController: Entered inside authUser() method");
+//		return employeeService.authUser(loginDto);
+//	}
 	@PostMapping("/setStatus/{card_id}")
 	private void setLoanStatus(@PathVariable Long card_id,@RequestParam String status)
 	{
