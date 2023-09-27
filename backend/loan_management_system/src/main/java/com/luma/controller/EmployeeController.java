@@ -47,6 +47,13 @@ public class EmployeeController {
 		EmployeeRegisterDto employeeRegisterDto=employeeService.getEmployeesbyId(id);
 		return employeeRegisterDto;
 	}
+	@GetMapping("/getEmployee/{empid}")
+	public EmployeeRegisterDto getEmployeesByEmpId(@PathVariable Long empid)
+	{
+		logger.info("EmployeeController: Entered inside getEmployeesByEmpId() method");
+		EmployeeRegisterDto employeeRegisterDto=employeeService.getEmployeesbyEmpId(empid);
+		return employeeRegisterDto;
+	}
 	
 	//@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping

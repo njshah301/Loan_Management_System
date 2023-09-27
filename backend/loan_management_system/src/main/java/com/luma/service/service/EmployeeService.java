@@ -26,4 +26,6 @@ public interface EmployeeService {
 	public EmployeeRegisterDto getEmployeesbyId(Long id);
 
 	public void updateEmployeePassword(ChangeCredentialDto changeCredentialDto, Long id);
+
+	public EmployeeRegisterDto getEmployeesbyEmpId(Long empid);
 }	

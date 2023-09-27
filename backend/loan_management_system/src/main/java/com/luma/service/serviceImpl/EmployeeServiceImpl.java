@@ -277,4 +277,14 @@ public class EmployeeServiceImpl implements EmployeeService{
 		userRepository.save(user.get());
 		
 	}
+
+	@Override
+	public EmployeeRegisterDto getEmployeesbyEmpId(Long empid) {
+		// TODO Auto-generated method stub
+		logger.info("EmployeeServiceImpl: Entered inside getEmployeeById() method");
+		Employee employee = employeeRepository.findByEmpid(empid).get();
+		EmployeeRegisterDto employeeRegisterDto= convertEntityToDto(employee);
+		return employeeRegisterDto;
+		
+	}
 }
