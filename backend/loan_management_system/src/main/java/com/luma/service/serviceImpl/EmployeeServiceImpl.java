@@ -219,7 +219,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 		user.setName(employeeRegisterDto.getName());
 		roles.add(role);
 		user.setRoles(roles);
-		user.setId(employeeRegisterDto.getId());
+		//user.setId(employeeRegisterDto.getId());
 		user.setEmail(employeeRegisterDto.getName()+"@gmail.com");
 
 		userRepository.save(user);
