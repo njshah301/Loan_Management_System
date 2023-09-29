@@ -1,19 +1,18 @@
 package com.luma.service.serviceImpl;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import com.luma.model.Item;
-import com.luma.model.Loan;
-import com.luma.model.dto.ItemDto;
-import com.luma.model.dto.LoanDto;
-import com.luma.repository.LoanRepository;
-import com.luma.service.service.LoanService;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+
+import com.luma.exception.ForiegnKeyException;
+import com.luma.model.Loan;
+import com.luma.model.dto.LoanDto;
+import com.luma.repository.LoanRepository;
+import com.luma.service.service.LoanService;
 @Service
 public class LoanServiceImpl implements LoanService {
 	private static final Logger logger = LoggerFactory.getLogger(LoanServiceImpl.class);
@@ -63,9 +62,14 @@ public class LoanServiceImpl implements LoanService {
 	@Override
 	public Loan deleteLoan (Long loan_id) {
 		logger.warn("LoanServiceImpl: Entered inside deleteLoan() method");
-		Loan loan = loanRepository.findById(loan_id).get();
-		loanRepository.deleteById(loan_id);
-		return loan;
+		try {
+			Loan loan = loanRepository.findById(loan_id).get();
+			loanRepository.deleteById(loan_id);
+			return loan;
+		} catch (DataIntegrityViolationException e) {
+			throw new ForiegnKeyException("The entity has a reference integrity, you cannot delete the entity.");
+		}
+		
 	}
 	
 	@Override

@@ -7,13 +7,12 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.luma.model.Employee;
+import com.luma.exception.ForiegnKeyException;
 import com.luma.model.Item;
-import com.luma.model.dto.EmployeeRegisterDto;
 import com.luma.model.dto.ItemDto;
-import com.luma.repository.EmployeeRepository;
 import com.luma.repository.ItemRepository;
 import com.luma.service.service.ItemService;
 
@@ -85,7 +84,13 @@ public class ItemServiceImpl implements ItemService{
 	@Override
 	public void deleteItem(@Valid Long id) {
 		logger.warn("ItemServiceImpl: Entered inside deleteItem() method");
-		itemRepository.deleteById(id);
+		try {
+			itemRepository.deleteById(id);
+
+		} catch (DataIntegrityViolationException e) {
+			// TODO: handle exception
+			throw new ForiegnKeyException("The entity is referenced to another entity. You cannot delete this data.");
+		}
 	}
 
 

@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.luma.exception.BadUsernameOrPasswordException;
 import com.luma.model.dto.JwtAuthResponse;
 import com.luma.model.dto.LoginDto;
 import com.luma.service.service.AuthService;
@@ -56,18 +58,22 @@ UserDetailsService userService;
 //		return ResponseEntity.ok(response);
 //	}
 	public ResponseEntity<JwtAuthResponse> login(@RequestBody LoginDto loginDto) {
-		System.out.println(loginDto);
-		
-		String token = authService.login(loginDto);
-		
-		JwtAuthResponse response = new JwtAuthResponse();
-		response.setAccessToken(token);
-		
-		UserDetails userDetails = userService.loadUserByUsername(loginDto.getUsernameOrEmail());
-		
-		response.setRole(userDetails.getAuthorities().toArray()[0].toString());
-		
-		return ResponseEntity.ok(response);
-	}
+		try {
+			String token = authService.login(loginDto);
+			
+			JwtAuthResponse response = new JwtAuthResponse();
+			response.setAccessToken(token);
+			
+			UserDetails userDetails = userService.loadUserByUsername(loginDto.getUsernameOrEmail());
+			
+			response.setRole(userDetails.getAuthorities().toArray()[0].toString());
+			
+			return ResponseEntity.ok(response);
+
+		} catch (BadCredentialsException e) {
+			// TODO: handle exception
+			throw new BadUsernameOrPasswordException("Please enter your username or Password correctly");
+		}
+			}
 
 }
