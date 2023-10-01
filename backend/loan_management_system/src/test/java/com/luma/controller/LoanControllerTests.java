@@ -46,39 +46,42 @@ public class LoanControllerTests {
 	
 	@Test
 	@Order(3)
-//	@Disabled
+	public void testGetLoanByCategory() throws Exception {
+		mockMvc.perform(get("/api/loans/category/stationary")).andExpect(status().isOk());
+	}
+	
+	@Test
+	@Order(4)
 	public void testAddLoan() throws Exception {
 		LoanDto loan = new LoanDto();
 		loan.setLoan_id(17L);
 		loan.setLoan_type("crockery");
 		loan.setDuration(1);
 		
-		String jsonEmployee=objectMapper.writeValueAsString(loan);
+		String jsonLoan=objectMapper.writeValueAsString(loan);
 
-		mockMvc.perform(post("/api/loans").content(jsonEmployee).
-				contentType("application/json"))
-				.andExpect(status().isCreated());
-	}
-	
-	@Test
-	@Order(4)
-//	@Disabled
-	public void testEditLoan() throws Exception {
-		LoanDto loan = new LoanDto();
-		loan.setLoan_id(17L);
-		loan.setLoan_type("crockery");
-		loan.setDuration(5);
-		
-		String jsonEmployee=objectMapper.writeValueAsString(loan);
-
-		mockMvc.perform(put("/api/loans/17").content(jsonEmployee).
+		mockMvc.perform(post("/api/loans").content(jsonLoan).
 				contentType("application/json"))
 				.andExpect(status().isCreated());
 	}
 	
 	@Test
 	@Order(5)
-//	@Disabled
+	public void testEditLoan() throws Exception {
+		LoanDto loan = new LoanDto();
+		loan.setLoan_id(17L);
+		loan.setLoan_type("crockery");
+		loan.setDuration(5);
+		
+		String jsonLoan=objectMapper.writeValueAsString(loan);
+
+		mockMvc.perform(put("/api/loans/17").content(jsonLoan).
+				contentType("application/json"))
+				.andExpect(status().isCreated());
+	}
+	
+	@Test
+	@Order(6)
 	public void testDeleteLoan() throws Exception {
 		mockMvc.perform(delete("/api/loans/17"))
 				.andExpect(status().isOk());
