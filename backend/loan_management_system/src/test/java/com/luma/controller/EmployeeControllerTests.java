@@ -79,24 +79,16 @@ public class EmployeeControllerTests {
 
 		String jsonEmployee=objectMapper.writeValueAsString(employee);
 
-		mockMvc.perform(put("/api/employee/36").content(jsonEmployee)
+		mockMvc.perform(put("/api/employee/41").content(jsonEmployee)
 				.contentType("application/json"))
 		.andExpect(status().isOk());
 
 	}
 
 	@Test
-	@Order(5)
-	@Disabled
-	public void testGetByIdWhenProvidedWithAnInvalidId() throws Exception {
-		mockMvc.perform(get("/api/employee/99999"))
-		.andExpect(status().isNotFound());
-	}
-
-	@Test
 	@Order(6)
 	public void testDelete() throws Exception {
-		mockMvc.perform(delete("/api/employee/36"))
+		mockMvc.perform(delete("/api/employee/41"))
 		.andExpect(status().isOk());
 	}
 }
