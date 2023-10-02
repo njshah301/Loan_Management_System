@@ -1,5 +1,6 @@
 package com.luma.service.serviceImpl;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.luma.exception.DuplicateEntryExistException;
 import com.luma.exception.ForiegnKeyException;
 import com.luma.model.Loan;
 import com.luma.model.dto.LoanDto;
@@ -26,6 +28,11 @@ public class LoanServiceImpl implements LoanService {
 	@Override
 	public Loan addLoan(Loan loan) {
 		logger.info("LoanServiceImpl: Entered inside addLoan() method");
+		Optional <Loan> loanOptional= loanRepository.findById(loan.getLoan_id());
+		if(loanOptional.isPresent())
+		{
+			throw new DuplicateEntryExistException("This entry already exist. Please try diffrent one.");
+		}
 		return loanRepository.save(loan);
 	}
 	

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.luma.exception.BadUsernameOrPasswordException;
+import com.luma.exception.DuplicateEntryExistException;
 import com.luma.exception.ForiegnKeyException;
 
 @ControllerAdvice
@@ -19,8 +20,14 @@ public class ExceptionControllerAdvice {
 	
 
 	@ExceptionHandler(ForiegnKeyException.class)
-	public ResponseEntity<String> handleForiegnKeyException(BadUsernameOrPasswordException badCredentialsException)
+	public ResponseEntity<String> handleForiegnKeyException(ForiegnKeyException foriegnKeyException)
 	{
 		return new ResponseEntity<String> ("The entity is referenced to another entity. You cannot delete this data.",HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(DuplicateEntryExistException.class)
+	public ResponseEntity<String> handleDuplicateEntryExistException(DuplicateEntryExistException duplicateEntryExistException)
+	{
+		return new ResponseEntity<String> ("This entry already exist. Please try different one.",HttpStatus.BAD_REQUEST);
 	}
 }

@@ -1,6 +1,7 @@
 package com.luma.service.serviceImpl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.luma.exception.DuplicateEntryExistException;
 import com.luma.exception.ForiegnKeyException;
 import com.luma.model.Item;
 import com.luma.model.dto.ItemDto;
@@ -70,7 +72,21 @@ public class ItemServiceImpl implements ItemService{
 	public void addItem(ItemDto itemDto)
 	{
 		logger.info("ItemServiceImpl: Entered inside addItem() method");
-		itemRepository.save(convertDtoToEntity(itemDto));
+		
+		try {
+			Optional <Item> item= itemRepository.findById(itemDto.getItemid());
+			if(item.isPresent())
+			{
+				throw new DuplicateEntryExistException("This entry already exist. Please try diffrent one.");
+			}
+			itemRepository.save(convertDtoToEntity(itemDto));
+		}
+		catch(DuplicateEntryExistException e)
+		{
+			throw new DuplicateEntryExistException("This entry already exist. Please try diffrent one.");
+	
+		}
+		
 	}
 
 	@Override
